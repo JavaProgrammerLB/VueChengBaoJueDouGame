@@ -9,5 +9,12 @@ var currentPlayingCard = null
 var state = {
   // World
   worldRatio: getWorldRatio(),
-  // TODO Other things
+  turn: 1,
+  players: [{
+    name:"Bill Lau"
+  }, {
+      name: "Alice Yuan"
+  },
+  ],
+  currentPlayerIndex: Math.round(Math.random())
 }
