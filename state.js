@@ -7,14 +7,48 @@ var currentPlayingCard = null
 
 // The consolidated state of our app
 var state = {
+  // UI
+  activeOverlay: null,
   // World
   worldRatio: getWorldRatio(),
+  // Game
   turn: 1,
-  players: [{
-    name:"Bill Lau"
-  }, {
-      name: "Alice Yuan"
-  },
+  players: [
+    {
+      name: 'Bill',
+      food: 10,
+      health: 10,
+      skipTurn: false,
+      skippedTurn: false,
+      hand: [],
+      lastPlayedCardId: null,
+      dead: false,
+    },
+    {
+      name: 'Alice',
+      food: 10,
+      health: 10,
+      skipTurn: false,
+      skippedTurn: false,
+      hand: [],
+      lastPlayedCardId: null,
+      dead: false,
+    },
   ],
-  currentPlayerIndex: Math.round(Math.random())
+  currentPlayerIndex: Math.round(Math.random()),
+  get currentPlayer () {
+    return state.players[state.currentPlayerIndex]
+  },
+  get currentOpponentId () {
+    return state.currentPlayerIndex === 0 ? 1 : 0
+  },
+  get currentOpponent () {
+    return state.players[state.currentOpponentId]
+  },
+  get currentHand () {
+    return state.currentPlayer.hand
+  },
+  drawPile: pile,
+  discardPile: {},
+  canPlay: false,
 }
